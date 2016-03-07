@@ -1,0 +1,14 @@
+{
+  "name": "canvas-video-render",
+  "version": "1.0.0",
+  "description": "Easily Export HTML5 Canvas to Video",
+  "main": "render.js",
+  "scripts": { },
+  "devDependencies": { 
+    "socket.io": "^1.4.5",
+    "express":"^4.13.4",
+    "get-pixels":"^3.3.0"
+  },
+  "author": "Mika I.",
+  "license": "MIT"
+}

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    
+</head>
+<body>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r74/three.min.js"></script>
+<script src="/socket.io/socket.io.js"></script>
+<script>
+
+    (function(){
+        var socket = io(),
+            size = location.search.split('?size=')[1],
+            width = size.split('x')[0];
+            height = size.split('x')[1],
+            scene = new THREE.Scene(),
+            camera = new THREE.PerspectiveCamera(75, width/height, 0.1, 1000),
+            renderer = new THREE.WebGLRenderer({
+                alpha: false,    //transparent background
+                antialias: true //smooth edges
+            }),
+            geometry = new THREE.BoxGeometry(300, 300, 300),
+            material = new THREE.MeshNormalMaterial(),
+            cube = new THREE.Mesh(geometry, material);
+
+        socket.emit('greetings', {});
+        socket.on('nextFrame', function(ready){
+            console.log('got green light:' + ready);
+            init();
+            step();
+        });
+
+        function init() {
+            
+            renderer.setSize(width, height);
+            console.log('renderer.domElement:', renderer.domElement)
+            document.body.appendChild(renderer.domElement);
+            
+            scene.add(cube);
+            camera.position.z = 500;
+        }
+
+        function step() {
+            renderer.render(scene, camera);
+            cube.rotation.x += 0.05;
+            cube.rotation.y += 0.05;
+            // render!
+            socket.emit('newFrame', { png:renderer.domElement.toDataURL('image/png') } );
+        }
+    })();
+    
+</script>
+</body>
+</html>
