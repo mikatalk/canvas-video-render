@@ -1,0 +1,44 @@
+*.seed
+*.log
+*.csv
+*.dat
+*.out
+*.pid
+*.gz
+*.bowerrc
+*.mp4
+
+pids
+logs
+results
+
+.sass-cache
+node_modules
+npm-debug.log
+
+.DS_Store
+
+#demos
+dist/demo-psfk.html
+dist/index_files/
+dist/fonts/
+
+# Files
+*.log
+.DS_Store
+*.map
+*.private.*
+
+# Folders
+dist/
+tmp/
+node_modules/
+bower_components/
+
+# IntelliJ
+.idea/
+*.iml
+
+# Sublime
+*.sublime-project
+*.sublime-workspace
